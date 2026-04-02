@@ -1,0 +1,21 @@
+server :
+  port : 8080
+
+spring :
+  application :
+    name : api-gateway-client-1
+
+
+  cloud :
+    gateway : 
+      server : 
+        webmvc : 
+          routes :
+           - id : first-service
+             uri : http://localhost:8081/
+             predicates :
+              - Path=/employee/**
+           - id : second-service
+             uri : http://localhost:8082/
+             predicates :
+              - Path=/consumer/**										

@@ -1,0 +1,26 @@
+server :
+  port : 8080
+
+eureka :
+  client :
+    service-url :
+      defaultZone : http://localhost:9083/eureka/
+
+spring :
+  application :
+    name : api-gateway-eureka-client
+
+  cloud :
+    gateway : 
+      server : 
+        webmvc : 
+          routes :
+            - id : first-service
+              uri : lb://api-gateway-service-1/
+              predicates :
+                - Path=/employee/**
+
+            - id : second-service
+              uri : lb://api-gateway-service-2/
+              predicates :
+                - Path=/consumer/**
