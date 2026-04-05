@@ -1,0 +1,25 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: microservice-deploy
+  labels :
+    app : ms-app
+
+spec:
+  replicas : 3
+  selector :
+    matchLabels :
+      app : ms-app
+
+  template :
+    metadata :
+      labels :
+        app : ms-app
+
+    spec :
+      containers :
+        - name : ms-container
+          image : vishymails/tomcatimage:1.0
+          ports :
+            - containerPort : 9000
+
